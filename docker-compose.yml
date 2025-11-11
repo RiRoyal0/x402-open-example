@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   gateway1:
     build: .
@@ -19,38 +17,38 @@ services:
       - "8082:8082"
     restart: unless-stopped
 
-  nodeA:
+  nodea:
     build: .
     command: ["node", "nodeA.js"]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY}
       - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
       - GATEWAY_URLS=http://nginx:8080/facilitator
-      - NODE_BASE_URL=http://nodeA:4101/facilitator
+      - NODE_BASE_URL=http://nodea:4101/facilitator
     ports:
       - "4101:4101"
     restart: unless-stopped
 
-  nodeB:
+  nodeb:
     build: .
     command: ["node", "nodeB.js"]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY}
       - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
       - GATEWAY_URLS=http://nginx:8080/facilitator
-      - NODE_BASE_URL=http://nodeB:4102/facilitator
+      - NODE_BASE_URL=http://nodeb:4102/facilitator
     ports:
       - "4102:4102"
     restart: unless-stopped
 
-  nodeC:
+  nodec:
     build: .
     command: ["node", "nodeC.js"]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY}
       - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
       - GATEWAY_URLS=http://nginx:8080/facilitator
-      - NODE_BASE_URL=http://nodeC:4103/facilitator
+      - NODE_BASE_URL=http://nodec:4103/facilitator
     ports:
       - "4103:4103"
     restart: unless-stopped
