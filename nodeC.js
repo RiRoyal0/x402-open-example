@@ -43,7 +43,6 @@ app.use((req, res, next) => {
 });
 const facilitator = new Facilitator({
   evmPrivateKey: process.env.PRIVATE_KEY,
-  svmPrivateKey: process.env.SOLANA_PRIVATE_KEY,
   evmNetworks: [baseSepolia],
   svmNetworks: ["solana-devnet"],
 });

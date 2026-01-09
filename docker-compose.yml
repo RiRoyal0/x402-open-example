@@ -22,8 +22,8 @@ services:
     command: ["node", "nodeA.js"]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY}
-      - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
-      - GATEWAY_URLS=http://nginx:8080/facilitator
+      # - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
+      - GATEWAY_URLS=http://gateway1:8081/facilitator,http://gateway2:8082/facilitator
       - NODE_BASE_URL=http://nodea:4101/facilitator
     ports:
       - "4101:4101"
@@ -34,8 +34,8 @@ services:
     command: ["node", "nodeB.js"]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY}
-      - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
-      - GATEWAY_URLS=http://nginx:8080/facilitator
+      # - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
+      - GATEWAY_URLS=http://gateway1:8081/facilitator,http://gateway2:8082/facilitator
       - NODE_BASE_URL=http://nodeb:4102/facilitator
     ports:
       - "4102:4102"
@@ -46,8 +46,8 @@ services:
     command: ["node", "nodeC.js"]
     environment:
       - PRIVATE_KEY=${PRIVATE_KEY}
-      - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
-      - GATEWAY_URLS=http://nginx:8080/facilitator
+      # - SOLANA_PRIVATE_KEY=${SOLANA_PRIVATE_KEY}
+      - GATEWAY_URLS=http://gateway1:8081/facilitator,http://gateway2:8082/facilitator
       - NODE_BASE_URL=http://nodec:4103/facilitator
     ports:
       - "4103:4103"
