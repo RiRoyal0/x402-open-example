@@ -44,6 +44,8 @@ This example repository demonstrates various integration patterns for x402-open:
 - Docker (for multi-node deployment)
 - Private keys for facilitator nodes (EVM and/or Solana)
 
+**Note:** There is one public gateway available at `https://facilitator.x402open.org` that you can use for production deployments.
+
 ### Installation
 ```bash
 pnpm install
