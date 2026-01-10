@@ -7,23 +7,9 @@ This repository provides working examples and reference implementations for inte
 [x402-open](https://github.com/VanshSahay/x402-open) is an open-source decentralized implementation of the X402 protocol that allows you to:
 
 - **Run facilitator nodes** - Support both EVM (Ethereum, Base, etc.) and SVM (Solana) networks
-- **Create HTTP gateways** - Route `verify` and `settle` requests across multiple nodes for high availability
+- **Convert existing servers to nodes** - Expose and endpoint for `verify` and `settle` requests on your server to remove reliance on centralized facilitators
 - **Auto-registration** - Nodes can self-register with gateways without manual configuration
 - **Framework integration** - Works with Express.js and other popular Node.js frameworks
-
-### What is the X402 Protocol?
-
-X402 is a protocol that integrates payments directly into HTTP requests. When a client tries to access a paid API endpoint:
-
-1. The server responds with a 402 Payment Required status
-2. The client automatically processes the payment via the configured blockchain network
-3. The server verifies the payment and serves the content
-
-This enables:
-- Direct API monetization without intermediaries
-- Micro-payments (fractions of a cent)
-- Decentralized payment processing
-- Support for multiple blockchains (Ethereum, Base Sepolia, Solana Devnet)
 
 ## Installation
 
@@ -85,6 +71,8 @@ The server will:
 - Start a facilitator node on `/facilitator` endpoint
 - Protect routes using `x402-express` payment middleware
 - Handle payment verification and settlement
+
+**You can extend ```seller.js``` with methods defined in nodeA, nodeB or nodeC such as gateway auto-registration**
 
 #### Example 2: Standalone Facilitator Node
 
@@ -209,7 +197,7 @@ app.use(paymentMiddleware(
 ));
 ```
 
-**Note:** For local development, use `http://localhost:8080/facilitator` (your local gateway) or `http://localhost:4021/facilitator` (co-located node). For production, use the public facilitator at `https://facilitator.x402open.org/facilitator`.
+**Note:** For local development, use `http://localhost:8080/facilitator` (your local gateway) or `http://localhost:4021/facilitator` (co-located node). For production, use the public facilitator at `https://facilitator.x402open.org`.
 
 ### Running a Standalone Facilitator Node
 
@@ -259,12 +247,6 @@ app.use(express.json());
 
 createHttpGatewayAdapter(app, {
   basePath: "/facilitator",
-  // Optional: Static peer list (nodes can also auto-register)
-  httpPeers: [
-    "http://localhost:4101/facilitator",
-    "http://localhost:4102/facilitator",
-    "http://localhost:4103/facilitator",
-  ],
   debug: true,
 });
 
@@ -387,11 +369,3 @@ When integrating x402-open into your project:
 
 - **[x402-open GitHub Repository](https://github.com/VanshSahay/x402-open)** - Source code and full documentation
 - [X402 Protocol Documentation](https://x402.org) - Protocol specification and details
-
-## License
-
-ISC
-
----
-
-**Note:** This is an example repository demonstrating x402-open integration patterns. For production use, refer to the [official x402-open documentation](https://github.com/VanshSahay/x402-open).
